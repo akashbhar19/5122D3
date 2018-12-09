@@ -17,40 +17,48 @@ var path = d3.geo.path()
 
 var dataById, countData = new Array();
 
-var quantize = d3.scale.quantize()
-    .domain([0, 100])
-    .range(d3.range(9).map(function(i) { return 'q' + i + '-9'; }));
+var nameCounter = 0;
 
-d3.json('data/traffic_data_CMPD.geojson', function(error, features) {
+var quantize = d3.scale.quantize()
+	.domain([0, 10000])
+	.range(d3.range(9).map(function (i) { return 'q' + i + '-9'; }));
+
+d3.json('data/traffic_data_CMPD.geojson', function (error, features) {
 	var scaleCenter = calculateScaleCenter(features);
 
 	projection.scale(scaleCenter.scale)
 		.center(scaleCenter.center)
-		.translate([width/2, height/2]);
+		.translate([width / 2, height / 2]);
 
-	d3.csv('data/traffic_data_CMPD.csv', function(data) {
+	d3.csv('data/traffic_data_CMPD.csv', function (data) {
 		dataById = d3.nest()
-	  .key(function(d) { return d.CMPD_Division; }).entries(data);
-	  //console.log(dataById);
-	  dataById.forEach(element => {
-		  countData.push([element.key, element.values.length]);
-	  });
-	  //console.log(countData);
-	});
-	
-	console.log(countData);
+			.key(function (d) { return d.CMPD_Division; }).entries(data);
+		//console.log(dataById);
+		dataById.forEach(element => {
+			countData.push({ id: element.key, count: element.values.length });
+		});
+		console.log(dataById);
 
-	svg.append('g')
-		.attr('class', 'features')
-		.selectAll('path')
-		.data(features.features)
-		.enter()
-		.append('path')
-		.attr('class', function(d){
-			console.log(countData, 'hi');
-			//return quantize(dataById[d.properties.dname]);
-		})
-		.attr('d', path);
+
+		console.log(countData);
+
+		svg.append('g')
+			.attr('class', 'features YlGnBu')
+			.selectAll('path')
+			.data(features.features)
+			.enter()
+			.append('path')
+			.attr('class', function (d) {
+				//console.log(d.properties.dname, nameCounter);
+				for (i = 0; i < countData.length; i++) {
+					if(countData[i].id == d.properties.dname){
+						console.log(d.properties.dname, countData[i].count, "yay");
+						return quantize(countData[i].count);
+					}
+				}
+			})
+			.attr('d', path);
+	});
 });
 
 function calculateScaleCenter(features) {
@@ -59,19 +67,19 @@ function calculateScaleCenter(features) {
 	// size.
 	var bbox_path = path.bounds(features),
 		scale = 0.95 / Math.max(
-		  (bbox_path[1][0] - bbox_path[0][0]) / width,
-		  (bbox_path[1][1] - bbox_path[0][1]) / height
+			(bbox_path[1][0] - bbox_path[0][0]) / width,
+			(bbox_path[1][1] - bbox_path[0][1]) / height
 		);
-  
+
 	// Get the bounding box of the features (in map units!) and use it
 	// to calculate the center of the features.
 	var bbox_feature = d3.geo.bounds(features),
 		center = [
-		  (bbox_feature[1][0] + bbox_feature[0][0]) / 2,
-		  (bbox_feature[1][1] + bbox_feature[0][1]) / 2];
-  
+			(bbox_feature[1][0] + bbox_feature[0][0]) / 2,
+			(bbox_feature[1][1] + bbox_feature[0][1]) / 2];
+
 	return {
-	  'scale': scale,
-	  'center': center
+		'scale': scale,
+		'center': center
 	};
-  }
+}
