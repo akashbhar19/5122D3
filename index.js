@@ -15,6 +15,12 @@ var projection = d3.geo.mercator()
 var path = d3.geo.path()
 	.projection(projection);
 
+var dataById, countData = new Array();
+
+var quantize = d3.scale.quantize()
+    .domain([0, 100])
+    .range(d3.range(9).map(function(i) { return 'q' + i + '-9'; }));
+
 d3.json('data/traffic_data_CMPD.geojson', function(error, features) {
 	var scaleCenter = calculateScaleCenter(features);
 
@@ -22,12 +28,28 @@ d3.json('data/traffic_data_CMPD.geojson', function(error, features) {
 		.center(scaleCenter.center)
 		.translate([width/2, height/2]);
 
+	d3.csv('data/traffic_data_CMPD.csv', function(data) {
+		dataById = d3.nest()
+	  .key(function(d) { return d.CMPD_Division; }).entries(data);
+	  console.log(dataById);
+	  dataById.forEach(element => {
+		  countData.push([element.key, element.values.length]);
+	  });
+	  console.log(countData);
+	});
+	
+	console.log(countData);
+
 	svg.append('g')
 		.attr('class', 'features')
 		.selectAll('path')
 		.data(features.features)
 		.enter()
 		.append('path')
+		.attr('class', function(d){
+			console.log(d.properties.dname);
+			//return quantize(dataById[d.properties.dname]);
+		})
 		.attr('d', path);
 });
 
