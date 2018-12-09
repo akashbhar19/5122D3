@@ -31,11 +31,11 @@ d3.json('data/traffic_data_CMPD.geojson', function(error, features) {
 	d3.csv('data/traffic_data_CMPD.csv', function(data) {
 		dataById = d3.nest()
 	  .key(function(d) { return d.CMPD_Division; }).entries(data);
-	  console.log(dataById);
+	  //console.log(dataById);
 	  dataById.forEach(element => {
 		  countData.push([element.key, element.values.length]);
 	  });
-	  console.log(countData);
+	  //console.log(countData);
 	});
 	
 	console.log(countData);
@@ -47,7 +47,7 @@ d3.json('data/traffic_data_CMPD.geojson', function(error, features) {
 		.enter()
 		.append('path')
 		.attr('class', function(d){
-			console.log(d.properties.dname);
+			console.log(countData, 'hi');
 			//return quantize(dataById[d.properties.dname]);
 		})
 		.attr('d', path);
