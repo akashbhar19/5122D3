@@ -5,6 +5,7 @@
 
 body {
 	font-family: "Myriad Pro", sans-serif;
+	background: silver;
 }
 
 h1 {
@@ -81,8 +82,21 @@ p {
 #map {
 	width: 900px;
 	height: 600px;
+	float: left;
 	border: 1px solid silver;
 	background: #E6E6E6;
+	box-sizing: border-box;
+}
+
+#selections {
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 725px;
+	height: 600px;
+	float: left;
+	box-sizing: border-box;
+	color: white;
+	background-color: rgb(30, 30, 30);
 }
 
 ul {
@@ -165,4 +179,9 @@ g.features path:hover {
 
 .hidden {
 	display: none;
+}
+
+#details {
+	margin-top: 10px;
+	padding-left: 20px;
 }

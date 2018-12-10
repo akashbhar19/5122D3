@@ -3,6 +3,10 @@ var currentKey = 'count';
 var width = 900,
 	height = 600;
 
+var template = d3.select('#template').html();
+
+Mustache.parse(template);
+
 //SVG element using width and height
 var svg = d3.select('#map')
 	.append('svg')
@@ -23,7 +27,6 @@ var path = d3.geo.path()
 var tooltip = d3.select("#map")
 	.append("div")
 	.attr("class", "tooltip hidden");
-
 
 var dataById, countData = new Array(), tempArr = new Array(), results = new Array(), resultsCount = new Array();
 
@@ -101,7 +104,8 @@ d3.json('data/traffic_data_CMPD.geojson', function (error, features) {
 			})
 			.attr('d', path)
 			.on('mousemove', showTooltip)
-			.on('mouseout', hideTooltip);;
+			.on('mouseout', hideTooltip)
+			.on('click', showDetails);
 	});
 });
 
@@ -151,18 +155,43 @@ function showTooltip(f) {
 	var mouse = d3.mouse(d3.select('#map').node()).map(
 		function (d) { return parseInt(d); }
 	);
-	
+
 	var left = Math.min(width - 4 * id.length, mouse[0] + 5);
-	
+
 	var top = mouse[1] + 25;
 	console.log(id);
 	// Use the ID to get the data entry.
 	// Show the tooltip (unhide it) and set the name of the data entry.
 	tooltip.classed('hidden', false)
-    .attr("style", "left:" + left + "px; top:" + top + "px")
-    .html(id);
+		.attr("style", "left:" + left + "px; top:" + top + "px")
+		.html(id);
 }
 
 function hideTooltip() {
 	tooltip.classed('hidden', true);
-  }
+}
+
+function showDetails(f) {
+	// Get the ID of the feature.
+	var id = getIdOfFeature(f);
+	var e = {};
+	// Use the ID to get the data entry.
+	for (i = 0; i < countData.length; i++) {
+		if (countData[i].id == id) {
+			var d = countData[i];
+			console.log(d);
+		}
+	}
+	e["Name"] = d.id;
+	for (i = 0; i < d.results.length; i++){
+	  	e[d.results[i].result] = d.results[i].count;
+	}
+	e["Total"] = d.count;
+	//d = {total: d.count, results: d.results};
+	// The details HTML output is just the name
+	console.log(e);
+	var detailsHtml = Mustache.render(template, e);
+	// Put the HTML output in the details container and show (unhide) it.
+	d3.select('#details').html(detailsHtml);
+	d3.select('#details').classed("hidden", false);
+}
