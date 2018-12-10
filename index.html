@@ -4,8 +4,8 @@
     <link rel="shortcut icon" href="">
     <title>Officer Traffic Stops Visualization Model</title>
     <link rel="stylesheet" type="text/css" href="index.css" />
-    
-    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <style>
         <!-- Style will eventually get pushed to index.css-->
     </style>
@@ -20,9 +20,55 @@
 
 <body style="margin-top: 60px;">
     <h3>Land use statistics map</h3>
-    <div id="map"><!-- Map container --></div>
+    <div id="map">
+        <!-- Map container -->
+    </div>
     <script src="d3.v3.min.js" charset="utf-8"></script>
     <script src="index.js" type="text/javascript"></script>
+    <h1>Option</h1>
+
+    <ul>
+        <li>
+            <input type="checkbox" name="low" id="low">
+            <label for="low">Low Severity</label>
+
+            <ul>
+                <li>
+                    <input type="checkbox" name="low-1" id="low-1">
+                    <label for="low-1">No Action</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="low-2" id="low-2">
+                    <label for="low-2">Verbal Warning</label>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox" name="medium" id="medium">
+            <label for="medium">Medium Severity</label>
+            <ul>
+                <li>
+                    <input type="checkbox" name="medium-1" id="medium-1">
+                    <label for="medium-1">Written Warning</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="medium-2" id="medium-2">
+                    <label for="medium-2">Citation</label>
+                </li>
+            </ul>
+            <li>
+            <input type="checkbox" name="high" id="high">
+            <label for="high">High Severity</label>
+            <ul>
+                <li>
+                    <input type="checkbox" name="high-1" id="high-1">
+                    <label for="high-1">Arrest</label>
+                </li>
+            </ul>
+        </li>
+        </li>
+    </ul>
+    <script src="indeterminate.js" type="text/javascript"></script>
 </body>
 
 </html>
