@@ -185,3 +185,21 @@ g.features path:hover {
 	margin-top: 10px;
 	padding-left: 20px;
 }
+
+#legend {
+	border: 1px solid silver;
+	border-top: 0;
+  }
+  
+  .legend-key path {
+	display: none;
+  }
+  
+  .legend-key text {
+	font-size: 1rem;
+  }
+  
+  .legend-key line {
+	stroke: #000;
+	shape-rendering: crispEdges;
+  }

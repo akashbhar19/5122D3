@@ -4,7 +4,7 @@
     <link rel="shortcut icon" href="">
     <title>Officer Traffic Stops Visualization Model</title>
     <link rel="stylesheet" type="text/css" href="index.css" />
-    
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <style>
@@ -30,39 +30,39 @@
 
             <ul>
                 <li>
-                    <input type="checkbox" name="low" id="low">
+                    <input type="checkbox" class="resultOptions" name="low" id="low">
                     <label for="low">Low Severity</label>
 
                     <ul>
                         <li>
-                            <input type="checkbox" name="low-1" id="low-1">
-                            <label for="low-1">No Action</label>
+                            <input type="checkbox" class="resultOptions" name="low-1" id="noaction">
+                            <label for="low-1">No Action Taken</label>
                         </li>
                         <li>
-                            <input type="checkbox" name="low-2" id="low-2">
+                            <input type="checkbox" class="resultOptions" name="low-2" id="verbal">
                             <label for="low-2">Verbal Warning</label>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <input type="checkbox" name="medium" id="medium">
+                    <input type="checkbox" class="resultOptions" name="medium" id="medium">
                     <label for="medium">Medium Severity</label>
                     <ul>
                         <li>
-                            <input type="checkbox" name="medium-1" id="medium-1">
+                            <input type="checkbox" class="resultOptions" name="medium-1" id="written">
                             <label for="medium-1">Written Warning</label>
                         </li>
                         <li>
-                            <input type="checkbox" name="medium-2" id="medium-2">
+                            <input type="checkbox" class="resultOptions" name="medium-2" id="citation">
                             <label for="medium-2">Citation</label>
                         </li>
                     </ul>
                 <li>
-                    <input type="checkbox" name="high" id="high">
+                    <input type="checkbox" class="resultOptions" name="high" id="high">
                     <label for="high">High Severity</label>
                     <ul>
                         <li>
-                            <input type="checkbox" name="high-1" id="high-1">
+                            <input type="checkbox" class="resultOptions" name="high-1" id="arrest">
                             <label for="high-1">Arrest</label>
                         </li>
                     </ul>
@@ -71,8 +71,16 @@
             </ul>
         </div>
     </div>
-    <div id="details" class="hidden">
+    <div id="legend"><!-- Legend container --></div>
+    <div id="details" class="hidden row">
         <!-- Details container -->
+    </div>
+    <div id="initial">
+            <h3>Instructions</h3>
+        <ul>
+          <li>Select a division to show the details.</li>
+          <li>Scroll in the map to zoom in and out.</li>
+        </ul>
     </div>
     <script id="template" type="x-tmpl-mustache">
         <h3>{{ Name }}</h3>
