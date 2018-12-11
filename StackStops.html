@@ -8,8 +8,8 @@
             var chart = new CanvasJS.Chart("chartContainer", {
                 animationEnabled: true,
                 title:{
-                    text: "Police Stops Based on Division and Driver Race",
-                    fontSize: 24,
+                    text: "Result of Stops by Division",
+                    fontSize: 20,
                     fontFamily: "tamoha",
                     fontWeight: "bold"
                 },
@@ -29,87 +29,90 @@
                     itemclick: toggleDataSeries,
                     horizontalAlign: "center",
                     verticalAlign: "top",
-                    fontSize: 16,
+                    fontSize: 14,
                     fontFamily: "tamoha"
                 },
                 data: [{
                     type: "stackedBar",
-                    name: "White",   // Driver
+                    name: "Arrest",   // Driver
+                    color: "LightSeaGreen",
                     showInLegend: "true",
                     xValueFormatString: "String",
                     yValueFormatString: "#,##0",
                     dataPoints: [
-                        { label: "Eastway", y: 1864 },
-                        { label: "Freedom", y: 853 },
-                        { label: "Independence", y: 1832 },
-                        { label: "North", y: 1172 },
-                        { label: "Providence", y: 4565 },
-                        { label: "South", y: 5206 },
-                        { label: "SteeleCreek", y: 1530 }
+                        { label: "Eastway", y: 237 },
+                        { label: "Freedom", y: 574 },
+                        { label: "Independence", y: 302 },
+                        { label: "North", y: 303 },
+                        { label: "Providence", y: 93 },
+                        { label: "South", y: 66 },
+                        { label: "SteeleCreek", y: 204 }
                     ]
                 },
                     {
                         type: "stackedBar",
-                        name: "Black",
+                        name: "Citation Issued",
+                        color: "RoyalBlue",
                         showInLegend: "true",
                         xValueFormatString: "String",
                         yValueFormatString: "#,##0",
                         dataPoints: [
-                            { label: "Eastway", y:  2999},
-                            { label: "Freedom", y: 2261 },
-                            { label: "Independence", y: 2310 },
-                            { label: "North", y: 3146 },
-                            { label: "Providence", y: 2613 },
-                            { label: "South", y: 1575 },
-                            { label: "SteeleCreek", y: 1810 }
+                            { label: "Eastway", y:  5096},
+                            { label: "Freedom", y: 5979 },
+                            { label: "Independence", y: 3518 },
+                            { label: "North", y: 4920 },
+                            { label: "Providence", y: 3620 },
+                            { label: "South", y: 3537 },
+                            { label: "SteeleCreek", y: 6073 }
                         ]
                     },
                     {
                         type: "stackedBar",
-                        name: "Asian",
+                        name: "No Action Taken",
                         showInLegend: "true",
                         xValueFormatString: "String",
                         yValueFormatString: "#,##0",
                         dataPoints: [
-                            { label: "Eastway", y: 107 },
-                            { label: "Freedom", y: 54 },
-                            { label: "Independence", y: 101 },
-                            { label: "North", y: 42 },
+                            { label: "Eastway", y: 286 },
+                            { label: "Freedom", y: 473 },
+                            { label: "Independence", y: 256 },
+                            { label: "North", y: 388 },
                             { label: "Providence", y: 159 },
-                            { label: "South", y: 246 },
-                            { label: "SteeleCreek", y: 74 }
+                            { label: "South", y: 91 },
+                            { label: "SteeleCreek", y: 191 }
                         ]
                     },
                     {
                         type: "stackedBar",
-                        name: "Native American",
+                        name: "Verbal Warning",
+                        color: "Coral",
                         showInLegend: "true",
                         xValueFormatString: "String",
                         yValueFormatString: "#,##0",
                         dataPoints: [
-                            { label: "Eastway", y: 0 },
-                            { label: "Freedom", y: 5 },
-                            { label: "Independence", y: 1 },
-                            { label: "North", y: 9 },
-                            { label: "Providence", y: 11 },
-                            { label: "South", y: 1 },
-                            { label: "SteeleCreek", y: 3 }
+                            { label: "Eastway", y: 7289 },
+                            { label: "Freedom", y: 10301 },
+                            { label: "Independence", y: 5040 },
+                            { label: "North", y: 8316 },
+                            { label: "Providence", y: 5190 },
+                            { label: "South", y: 4804 },
+                            { label: "SteeleCreek", y: 4926 }
                         ]
                     },
                     {
                         type: "stackedBar",
-                        name: "Other",
+                        name: "Written Warning",
                         showInLegend: "true",
                         xValueFormatString: "String",
                         yValueFormatString: "#,##0",
                         dataPoints: [
-                            { label: "Eastway", y: 109 },
-                            { label: "Freedom", y: 44 },
-                            { label: "Independence", y: 92 },
-                            { label: "North", y: 70 },
-                            { label: "Providence", y: 218 },
-                            { label: "South", y: 357 },
-                            { label: "SteeleCreek", y: 108 }
+                            { label: "Eastway", y: 379 },
+                            { label: "Freedom", y: 1051 },
+                            { label: "Independence", y: 396 },
+                            { label: "North", y: 349 },
+                            { label: "Providence", y: 1137 },
+                            { label: "South", y: 587 },
+                            { label: "SteeleCreek", y: 241 }
                         ]
                     }]
             });
@@ -128,7 +131,7 @@
     </script>
 </head>
 <body>
-<div id="chartContainer" style="height: 395px; width: 100%;"></div>
+<div id="chartContainer" style="height:300px; width:100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 <!-- <script src="//d3js.org/d3.v4.min.js"></script>   -->
