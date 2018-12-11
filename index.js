@@ -194,6 +194,7 @@ function updateMapColors() {
 			}
 		}
 	});
+	updateLegend();
   }
   
 
@@ -286,19 +287,6 @@ function showDetails(f) {
 	d3.select('#details').classed("hidden", false);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 var formatNumber = d3.format('.2f');
 
 // For the legend, we prepare a very simple linear scale. Domain and
@@ -319,7 +307,7 @@ var legendXAxis = d3.svg.axis()
 // dimensions.
 var legendSvg = d3.select('#legend').append('svg')
   .attr('width', '100%')
-  .attr('height', '44');
+  .attr('height', '60');
 
 // To this SVG element, we add a <g> element which will hold all of our
 // legend entries.
@@ -394,13 +382,6 @@ function updateLegend() {
     .attr('class', function(d, i) {
       return quantize.range()[i];
     });
-
-  // We update the legend caption. To do this, we take the text of the
-  // currently selected dropdown option.
-  var keyDropdown = d3.select('#select-key').node();
-  var selectedOption = keyDropdown.options[keyDropdown.selectedIndex];
-  g.selectAll('text.caption')
-    .text(selectedOption.text);
 
   // We set the calculated domain as tickValues for the legend axis.
   legendXAxis
