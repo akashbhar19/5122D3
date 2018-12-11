@@ -2,10 +2,19 @@
 
 <head>
     <link rel="shortcut icon" href="">
-    <title>QCTS Home Page</title>
-    <link rel="stylesheet" type="text/css" href="styles/index.css"/>
+    <title>QCTS Proposal</title>
+    <link rel="stylesheet" type="text/css" href="styles/index.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+    <style>
+        #PDFView {
+            width: 99%;
+            height: 90%;
+            margin-right: 10px;
+            margin-bottom: 15px;
+            position: fixed;
+        }
+    </style>
 
 </head>
 <div class="topnav">
@@ -18,7 +27,9 @@
 </div>
 
 <body style="margin-top: 60px;">
-    Proposal Coming Soon
+    <object id="PDFView" data="data/Proposal5122.pdf" type="application/pdf">
+        <p>Alternative text - include a link <a href="data/Proposal5122.pdf">to the PDF!</a></p>
+    </object>
 </body>
 
 <div class="footer">By Akash Bhardwaj, Amparo Velasquez, Krithika Prabhakar</div>
