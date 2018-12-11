@@ -6,6 +6,15 @@
     <link rel="stylesheet" type="text/css" href="styles/index.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+    <style>
+        #PDFView {
+                    width: 99%;
+                    height: 90%;
+                    margin-right: 10px;
+                    margin-bottom: 15px;
+                    position: fixed;
+                }
+            </style>
 
 </head>
 <div class="topnav">
@@ -18,9 +27,9 @@
 </div>
 
 <body style="margin-top: 60px;">
-    <iframe src="https://studentuncc-my.sharepoint.com/personal/abhardwa_uncc_edu/_layouts/15/Doc.aspx?sourcedoc={76fccd58-ee3b-4a2e-a59a-4ef16f566243}&amp;action=embedview&amp;wdAr=1.7777777777777777"
-        width="100%" height="790px" frameborder="0">This is an embedded <a target="_blank" href="https://office.com">Microsoft
-            Office</a> presentation, powered by <a target="_blank" href="https://office.com/webapps">Office Online</a>.</iframe>
+    <object id="PDFView" data="data/Presentation.pdf" type="application/pdf">
+        <p>Alternative text - include a link <a href="data/Presentation.pdf">to the PDF!</a></p>
+    </object>
 </body>
 
 <div class="footer">By Akash Bhardwaj, Amparo Velasquez, Krithika Prabhakar</div>
